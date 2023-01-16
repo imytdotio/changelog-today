@@ -29,11 +29,11 @@ const Tag = (props) => {
 export const Changelog = (props) => {
   const { id } = useParams();
   return (
-    <div className=" w-96 m-auto rounded-md p-4 text-left">
+    <div className="w-full md:w-96 m-auto rounded-md p-4 text-left">
       <h1 className="font-bold">{props.title}</h1>
       <Project text="⚛️ imyt.io" color="bg-red-200" />
       <Tag text="⚙️ Update" color="bg-gray-200" />
-      <p className="mt-4">{props.content}</p>
+      <p className="mt-4 w-full md:w-96">{props.content}</p>
     </div>
   );
 };

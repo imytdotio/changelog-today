@@ -1,4 +1,5 @@
 import React from "react";
+import { Profile } from "../Components/Profile";
 import { Changelog } from "./Changelog";
 
 /**

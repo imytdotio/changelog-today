@@ -9,8 +9,8 @@ import { NavLink } from "react-router-dom";
 export const Nav = (props) => {
   const nav = "hover:bg-gray-200 duration-200 p-2 rounded-md";
   return (
-    <div className="flex w-96 m-auto my-4">
-      <ul className="flex flex-1">
+    <div className="flex w-full md:w-96 m-auto my-4">
+      <ul className="flex flex-1 gap-1">
         <NavLink className={nav} to="/">
           Home
         </NavLink>
@@ -18,7 +18,12 @@ export const Nav = (props) => {
           Create
         </NavLink>
       </ul>
-      <button className={nav}>Logout</button>
+      <ul className="flex gap-2">
+        <NavLink className={nav} to="/profile">
+          Profile
+        </NavLink>
+        <button className={nav}>Logout</button>
+      </ul>
     </div>
   );
 };
