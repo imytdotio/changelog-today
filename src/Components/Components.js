@@ -23,7 +23,7 @@ export const Button = (props) => {
     <button
       type={props.type}
       onClick={props.onClick}
-      className="bg-blue-600 text-white p-2 rounded-xl w-full md:w-96 mt-4"
+      className="bg-blue-600 text-white p-2 rounded-xl w-full md:w-96 mt-4 hover:drop-shadow-[0_10px_8px_rgba(0,0,0,0.05)] hover:ring-offset-2 hover:ring-2 duration-100"
     >
       {props.children}
     </button>
