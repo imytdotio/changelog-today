@@ -10,7 +10,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} exact />
-          {/* <Route path="/:id" element={<Changelog />} exact /> */}
+          <Route path="/:id" element={<Changelog />} exact />
         </Routes>
       </BrowserRouter>
     </div>
