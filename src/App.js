@@ -2,7 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from "./Page/Home";
-import { Changelog } from "./Page/Changelog";
+// import { Changelog } from "./Page/Changelog";
 import { Create } from "./Page/Create";
 import { Nav } from "./Components/Nav";
 import { ProfileEdit } from "./Page/ProfileEdit";
@@ -17,7 +17,7 @@ function App() {
           <Route path="/" element={<Home />} exact />
           <Route path="/create" element={<Create />} exact />
           <Route path="/profile" element={<ProfileEdit />} exact />
-          <Route path="/:id" element={<Changelog />} exact />
+          {/* <Route path="/:id" element={<Changelog />} exact /> */}
         </Routes>
       </BrowserRouter>
     </div>
