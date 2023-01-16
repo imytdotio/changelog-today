@@ -79,8 +79,8 @@ export const ProfileEdit = (props) => {
         </Label>
         {/* TODO: Tags */}
         <Label text="links">
-          {/* should be changed to this structure */}
-          {/* {socialLinks.map(socialLink => {
+          {/* TODO: should be changed to this structure */}
+          {/* TODO: {socialLinks.map(socialLink => {
                 return <SocialLink icon='' link = ''/>
             })} */}
           <SocialLink icon="instagram" link="https://instagram.com/imyt.io" />
