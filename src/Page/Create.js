@@ -78,11 +78,19 @@ export const Create = (props) => {
         </Label>
 
         <Label text="Tag Color">
-          <TextInput
-            type="text"
+          <select
             onChange={(e) => setTagColor(e.target.value)}
             value={tagColor}
-          />
+            className='p-2 border rounded-md w-full md:w-96 bg-white'
+          >
+            <option value = 'gray'>🦍 Gray</option>
+            <option value = 'red'>🍎 Red</option>
+            <option value = 'brown'>🪵 Brown</option>
+            <option value = 'orange'>🍊 Orange</option>
+            <option value = 'purple'>🍇 Purple</option>
+            <option value = 'blue'>🦋 Blue</option>
+            <option value = 'green'>🌳 Green</option>
+          </select>
         </Label>
 
         {/* {tags && tags.map((tag) => <p></p>)} */}

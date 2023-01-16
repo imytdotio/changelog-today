@@ -38,6 +38,8 @@ const color = (color) => {
       return "bg-gray-200 border-gray-600";
     case "brown":
       return "bg-orange-900 bg-opacity-30 border-orange-900";
+    case "purple":
+      return "bg-violet-200 border-violet-600";
     default:
       return "bg-gray-200 border-gray-600";
   }
