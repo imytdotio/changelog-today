@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Profile } from "../Components/Profile";
 import { Button, Label, TextInput } from "../Components/Components";
 import { FaInstagram, FaTwitter } from "react-icons/fa";
+import { isElementType } from "@testing-library/user-event/dist/utils";
 
 /**
  * @author
@@ -28,6 +29,7 @@ export const ProfileEdit = (props) => {
   const [selfIntro, setSelfIntro] = useState(
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum "
   );
+  const [userId, setUserId] = useState('imyt.io')
   const submitHandler = (e) => {
     e.preventDefault();
   };
@@ -87,9 +89,15 @@ export const ProfileEdit = (props) => {
           <SocialLink icon="twitter" link="https://twitter.com/imyt_io" />
         </Label>
       </form>
-      <hr className="w-96 mt-8 mb-4 m-auto"/>
+      <hr className="w-96 mt-8 mb-4 m-auto" />
       <h3 className="font-bold text-xl mb-4">Preview</h3>
-      <Profile username={username} motto={motto} selfIntro={selfIntro} />
+      <Profile
+        pfpUrl="https://i.ibb.co/RHKQZx7/IMG-4935.jpg"
+        username={username}
+        userId = {userId}
+        motto={motto}
+        selfIntro={selfIntro}
+      />
       <Button type="submit">Update</Button>
     </div>
   );

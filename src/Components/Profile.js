@@ -10,10 +10,10 @@ export const Profile = (props) => {
     <div className="w-full md:w-96 text-left m-auto">
         <div className="flex h-28 mb-4 rounded-md bg-blue-200 p-2 border-box profile-card">
         <img
-          src="https://i.ibb.co/RHKQZx7/IMG-4935.jpg"
-          alt="IMG-4935"
+          src={props.pfpUrl}
+          alt="PFP"
           border="0"
-          className="rounded-full h-full mr-4"
+          className="rounded-full h-full mr-4 shadow-xl"
         />
         <div className="flex-col my-auto">
           <h1 className="font-bold text-2xl">
@@ -24,7 +24,7 @@ export const Profile = (props) => {
                 console.log("hi");
               }}
             >
-              @imyt.io
+              @{props.userId}
             </span>
           </h1>
           <p className="text-gray-600 text-sm w-full flex-1 text-white">{props.motto}</p>

@@ -14,24 +14,26 @@ export const User = (props) => {
     <div>
       <p>{user}</p>
       <Profile
-        username="YT"
-        motto="He said one day, you'll leave this world behind, so live a life you will remember."
+        username="Elon Musk"
+        userId = 'elon'
+        pfpUrl = 'https://i.ibb.co/CJnGFh5/IY9-Gx6-Ok-400x400.jpg'
+        motto="State-Affiliated Media"
         selfIntro=""
       />
       <Changelog
-        title="Test"
-        project="Project Name"
-        tag={{ name: "🧪 Test", color: "green" }}
+        title="Rocket built. Ready to fire."
+        project="SpaceX"
+        tag={{ name: "⭐️ Update", color: "orange" }}
         date={new Date()}
-        content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+        content="Falcon Heavy successfully launches USSF-67 to orbit."
         key="1"
       />
       <Changelog
-        title="Test"
-        project="Project Name"
-        tag={{ name: "🔥 Test", color: "orange" }}
+        title="Tesla owners collectively saved $2B+ in 2022 ⚡️"
+        project="Tesla"
+        tag={{ name: "💎 Milestone", color: "blue" }}
         date={new Date()}
-        content="Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        content="You can view your charging history & savings for the full year in the Tesla app. Thrilled to see that much amount of savings in only a year."
         key="2"
       />
     </div>
