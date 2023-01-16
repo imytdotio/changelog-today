@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, Label, TextInput } from "../Components/Components";
+import { supabase } from "../Config/supabaseClient";
 
 /**
  * @author
@@ -7,14 +8,36 @@ import { Button, Label, TextInput } from "../Components/Components";
  **/
 
 export const Create = (props) => {
+  const [error, setError] = useState(null);
+
   const [title, setTitle] = useState("");
   const [project, setProject] = useState("");
-  const [tags, setTags] = useState([]);
+  // const [projectColor, setProjectColor] = useState("");
+  const [tag, setTag] = useState("");
+  const [tagColor, setTagColor] = useState("");
   const [note, setNote] = useState("");
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    console.log(tags);
+
+    const { data, error } = await supabase
+      .from("changelogs")
+      .insert({ title, project, tag, tagColor, note })
+      .select();
+
+    if (data) {
+      console.log(data);
+      setTitle("");
+      setProject("");
+      setTag("");
+      setTagColor("");
+      setNote("");
+      setError(null);
+    }
+
+    if (error) {
+      console.log(error);
+    }
   };
   return (
     <div>
@@ -24,23 +47,51 @@ export const Create = (props) => {
         onSubmit={submitHandler}
       >
         <Label text="title">
-          <TextInput type="text" onChange={(e) => setTitle(e.target.value)} />
+          <TextInput
+            type="text"
+            onChange={(e) => setTitle(e.target.value)}
+            value={title}
+          />
         </Label>
 
         <Label text="Project">
-          <TextInput type="text" onChange={(e) => setProject(e.target.value)} />
+          <TextInput
+            type="text"
+            onChange={(e) => setProject(e.target.value)}
+            value={project}
+          />
         </Label>
 
-        <Label text="Tags">
-          <TextInput type="text" onChange={(e) => setTags(e.target.value)} />
+        {/* <Label text="Project Color">
+          <TextInput
+            type="text"
+            onChange={(e) => setProjectColor(e.target.value)}
+          />
+        </Label> */}
+
+        <Label text="Tag">
+          <TextInput
+            type="text"
+            onChange={(e) => setTag(e.target.value)}
+            value={tag}
+          />
         </Label>
 
-        {tags && tags.map((tag) => <p></p>)}
+        <Label text="Tag Color">
+          <TextInput
+            type="text"
+            onChange={(e) => setTagColor(e.target.value)}
+            value={tagColor}
+          />
+        </Label>
+
+        {/* {tags && tags.map((tag) => <p></p>)} */}
 
         <p className="mr-4 px-2 text-gray-600 text-sm">Note</p>
         <textarea
           className="border p-2 h-64 md:w-96 w-full rounded-xl"
           onChange={(e) => setNote(e.target.value)}
+          value={note}
         />
         <br />
         <Button type="submit">Create</Button>
