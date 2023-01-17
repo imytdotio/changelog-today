@@ -48,7 +48,7 @@ const color = (color) => {
 export const Changelog = (props) => {
   const { id } = useParams();
   return (
-    <div className="w-full md:w-96 m-auto rounded-md p-4 text-left mb-4">
+    <div className="w-full md:w-96 m-auto rounded-md px-4 py-8 border text-left mb-4">
       <Project text={props.project} />
       <h1 className="font-bold py-1 text-lg">{props.title}</h1>
       <p className="text-gray-600 text-sm mb-4 italic font-light ">
@@ -58,7 +58,7 @@ export const Changelog = (props) => {
       <Tag text={props.tag.name} color={color(props.tag.color)} />
       {/* ))} */}
 
-      <p className="mt-4 w-full md:w-96">{props.content}</p>
+      <p className="mt-4 w-full">{props.content}</p>
     </div>
   );
 };
