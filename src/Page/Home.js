@@ -13,7 +13,10 @@ export const Home = (props) => {
   const [error, setError] = useState(null);
 
   const fetchChangelogs = async () => {
-    const { data, error } = await supabase.from("changelogs").select();
+    const { data, error } = await supabase
+      .from("changelogs")
+      .select()
+      .order("created_at", { ascending: false });
 
     if (error) {
       setError(error);
@@ -21,7 +24,7 @@ export const Home = (props) => {
     }
 
     if (data) {
-        console.log(data)
+      console.log(data);
       setLogs(data);
       setError(null);
     }
