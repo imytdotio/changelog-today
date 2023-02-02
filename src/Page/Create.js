@@ -2,6 +2,7 @@ import { marked } from "marked";
 import React, { useState } from "react";
 import { Button, Label, TextInput } from "../Components/Components";
 import { supabase } from "../Config/supabaseClient";
+import ReactMarkdown from "react-markdown";
 
 /**
  * @author
@@ -107,7 +108,8 @@ export const Create = (props) => {
           onChange={(e) => setNote(e.target.value)}
           value={note}
         />
-        <div dangerouslySetInnerHTML={renderMarkdown()} />
+        {/* <div dangerouslySetInnerHTML={renderMarkdown()} /> */}
+        <ReactMarkdown children={note} />
         <br />
         <Button type="submit">Create</Button>
       </form>
