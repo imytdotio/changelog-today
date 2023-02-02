@@ -1,3 +1,4 @@
+import { marked } from "marked";
 import React, { useState } from "react";
 import { Button, Label, TextInput } from "../Components/Components";
 import { supabase } from "../Config/supabaseClient";
@@ -39,6 +40,11 @@ export const Create = (props) => {
       console.log(error);
     }
   };
+
+  const renderMarkdown = () => {
+    return { __html: marked(note) };
+  };
+
   return (
     <div>
       <h1>Create</h1>
@@ -81,15 +87,15 @@ export const Create = (props) => {
           <select
             onChange={(e) => setTagColor(e.target.value)}
             value={tagColor}
-            className='p-2 border rounded-md w-full md:w-96 bg-white'
+            className="p-2 border rounded-md w-full md:w-96 bg-white"
           >
-            <option value = 'gray'>🦍 Gray</option>
-            <option value = 'red'>🍎 Red</option>
-            <option value = 'brown'>🪵 Brown</option>
-            <option value = 'orange'>🍊 Orange</option>
-            <option value = 'purple'>🍇 Purple</option>
-            <option value = 'blue'>🦋 Blue</option>
-            <option value = 'green'>🌳 Green</option>
+            <option value="gray">🦍 Gray</option>
+            <option value="red">🍎 Red</option>
+            <option value="brown">🪵 Brown</option>
+            <option value="orange">🍊 Orange</option>
+            <option value="purple">🍇 Purple</option>
+            <option value="blue">🦋 Blue</option>
+            <option value="green">🌳 Green</option>
           </select>
         </Label>
 
@@ -101,6 +107,7 @@ export const Create = (props) => {
           onChange={(e) => setNote(e.target.value)}
           value={note}
         />
+        <div dangerouslySetInnerHTML={renderMarkdown()} />
         <br />
         <Button type="submit">Create</Button>
       </form>

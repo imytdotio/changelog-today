@@ -1,3 +1,4 @@
+import { marked } from "marked";
 import React from "react";
 import { useParams } from "react-router-dom";
 
@@ -47,6 +48,9 @@ const color = (color) => {
 
 export const Changelog = (props) => {
   const { id } = useParams();
+  const renderMarkdown = () => {
+    return { __html: marked(props.content) };
+  };
   return (
     <div className="w-full md:w-96 m-auto rounded-md px-4 py-8 border text-left mb-4">
       <Project text={props.project} />
@@ -58,7 +62,8 @@ export const Changelog = (props) => {
       <Tag text={props.tag.name} color={color(props.tag.color)} />
       {/* ))} */}
 
-      <p className="mt-4 w-full">{props.content}</p>
+      {/* <p className="mt-4 w-full">{props.content}</p> */}
+      <p className="mt-4 w-full" dangerouslySetInnerHTML={renderMarkdown()} />
     </div>
   );
 };
