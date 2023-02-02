@@ -1,6 +1,6 @@
-import { marked } from "marked";
 import React from "react";
 import { useParams } from "react-router-dom";
+import { marked } from "marked";
 import ReactMarkdown from "react-markdown";
 
 /**
@@ -10,7 +10,10 @@ import ReactMarkdown from "react-markdown";
 
 const Project = (props) => {
   return (
-    <p className="bg-gray-200 text-gray-700 font-bold inline px-2 mb-2 rounded-full w-fit cursor-pointer">
+    <p
+      onClick={props.projectSelected}
+      className="bg-gray-200 text-gray-700 font-bold inline px-2 mb-2 rounded-full w-fit cursor-pointer"
+    >
       {props.text}
     </p>
   );
@@ -19,6 +22,8 @@ const Project = (props) => {
 const Tag = (props) => {
   return (
     <span
+      onClick={props.tagSelected}
+      // onClick={() => console.log(props.tagSelected)}
       className={`${props.color} border-2 inline-block px-4 py-2 rounded-md w-fit my-1 cursor-pointer`}
     >
       <p>{props.text}</p>
@@ -52,15 +57,25 @@ export const Changelog = (props) => {
   const renderMarkdown = () => {
     return { __html: marked(props.content) };
   };
+
   return (
     <div className="w-full md:w-96 m-auto rounded-md px-4 py-8 border text-left mb-4">
-      <Project text={props.project} />
+      <Project
+        text={props.project}
+        projectSelected={() => props.projectSelected(props.project)}
+
+        // tagSelected={() => props.tagSelected(props.tag.name)}
+      />
       <h1 className="font-bold py-1 text-lg">{props.title}</h1>
       <p className="text-gray-600 text-sm mb-4 italic font-light ">
         {new Date(props.date).toDateString()}
       </p>
       {/* {props.tags.map((tag) => ( */}
-      <Tag text={props.tag.name} color={color(props.tag.color)} />
+      <Tag
+        text={props.tag.name}
+        color={color(props.tag.color)}
+        tagSelected={() => props.tagSelected(props.tag.name)}
+      />
       {/* ))} */}
 
       {/* <p className="mt-4 w-full">{props.content}</p> */}
