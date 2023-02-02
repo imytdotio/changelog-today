@@ -1,6 +1,7 @@
 import { marked } from "marked";
 import React from "react";
 import { useParams } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
 
 /**
  * @author
@@ -10,7 +11,7 @@ import { useParams } from "react-router-dom";
 const Project = (props) => {
   return (
     <p className="bg-gray-200 text-gray-700 font-bold inline px-2 mb-2 rounded-full w-fit cursor-pointer">
-      @{props.text}
+      {props.text}
     </p>
   );
 };
@@ -63,7 +64,8 @@ export const Changelog = (props) => {
       {/* ))} */}
 
       {/* <p className="mt-4 w-full">{props.content}</p> */}
-      <p className="mt-4 w-full" dangerouslySetInnerHTML={renderMarkdown()} />
+      {/* <p className="mt-4 w-full" dangerouslySetInnerHTML={renderMarkdown()} /> */}
+      <ReactMarkdown children={props.content} />
     </div>
   );
 };
