@@ -1,9 +1,10 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import { supabase } from "../Config/supabaseClient";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = (props) => {
+  const [user, setUser] = useState();
   const signUp = async (email, password) => {
     const { data, error } = await supabase.auth.signUp({
       email: email,
@@ -31,6 +32,7 @@ export const AuthProvider = (props) => {
 
     if (data) {
       console.log(data);
+      setUser(data.user);
     }
   };
 
@@ -43,7 +45,7 @@ export const AuthProvider = (props) => {
   };
 
   return (
-    <AuthContext.Provider value={{ signUp, signInWithPassword, signOut }}>
+    <AuthContext.Provider value={{ signUp, signInWithPassword, signOut, user }}>
       {props.children}
     </AuthContext.Provider>
   );

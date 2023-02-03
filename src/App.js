@@ -21,7 +21,7 @@ function App() {
           <Route path="/profile" element={<ProfileEdit />} exact />
           <Route path="/login" element={<Login />} exact />
           {/* <Route path="/changelog/:id" element={<Changelog />} exact /> */}
-          <Route path="/:user" element={<User />} exact />
+          <Route path="/u/:userHandle" element={<User />} exact />
         </Routes>
       </BrowserRouter>
     </div>
