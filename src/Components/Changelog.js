@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { marked } from "marked";
 import ReactMarkdown from "react-markdown";
 
@@ -60,12 +60,24 @@ export const Changelog = (props) => {
 
   return (
     <div className="w-full md:w-96 m-auto rounded-md px-4 py-8 border text-left mb-4">
-      <Project
-        text={props.project}
-        projectSelected={() => props.projectSelected(props.project)}
+      <div className="flex flex-row gap-4 h-16">
+        <Link to={`/u/${props.handle}`}>
+          <img
+            src="https://i.ibb.co/RHKQZx7/IMG-4935.jpg"
+            className="my-auto h-12 rounded-full ring-2 ring-slate-600 ring-offset-2"
+          />
+        </Link>
+        <div className="flex flex-col my-auto">
+          <p className="">
+            <Link to={`/u/${props.handle}`}>@{props.handle}</Link>
+          </p>
+          <Project
+            text={props.project}
+            projectSelected={() => props.projectSelected(props.project)}
+          />
+        </div>
+      </div>
 
-        // tagSelected={() => props.tagSelected(props.tag.name)}
-      />
       <h1 className="font-bold py-1 text-lg">{props.title}</h1>
       <p className="text-gray-600 text-sm mb-4 italic font-light ">
         {new Date(props.date).toDateString()}

@@ -79,7 +79,9 @@ export const Home = (props) => {
         {
           <div className="my-auto flex-1 text-left flex flex-row gap-2">
             {filters.map((filter) => (
-              <p className="border border-gray-200 rounded-full px-2">{filter}</p>
+              <p className="border border-gray-200 rounded-full px-2">
+                {filter}
+              </p>
             ))}
           </div>
         }
@@ -101,6 +103,8 @@ export const Home = (props) => {
           return (
             <Changelog
               title={log.title}
+              userId={log.uid}
+              handle={log.handle}
               project={log.project}
               tag={{ name: log.tag, color: log.tagColor }}
               date={log.created_at}

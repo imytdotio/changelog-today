@@ -75,6 +75,7 @@ export const User = (props) => {
         logs.map((log) => (
           <Changelog
             title={log.title}
+            handle={log.handle}
             project={log.project}
             tag={{ name: log.tag, color: log.tagColor }}
             date={Date(log.date)}
