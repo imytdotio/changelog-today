@@ -18,11 +18,11 @@ export const Nav = (props) => {
           Create
         </NavLink>
       </ul>
-      <ul className="flex gap-2">
+      <ul className="flex gap-1">
         <NavLink className={nav} to="/profile">
           Profile
         </NavLink>
-        <button className={nav}>Logout</button>
+        <NavLink className={nav} to='login'>Logout</NavLink>
       </ul>
     </div>
   );

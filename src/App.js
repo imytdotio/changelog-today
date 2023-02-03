@@ -7,6 +7,7 @@ import { Create } from "./Page/Create";
 import { Nav } from "./Components/Nav";
 import { ProfileEdit } from "./Page/ProfileEdit";
 import { User } from "./Page/User";
+import Login from "./Page/Login";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<Home />} exact />
           <Route path="/create" element={<Create />} exact />
           <Route path="/profile" element={<ProfileEdit />} exact />
+          <Route path="/login" element={<Login />} exact />
           {/* <Route path="/changelog/:id" element={<Changelog />} exact /> */}
           <Route path="/:user" element={<User />} exact />
         </Routes>
