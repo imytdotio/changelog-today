@@ -16,14 +16,11 @@ export const Nav = (props) => {
         <NavLink className={nav} to="/">
           Home
         </NavLink>
+      </ul>
+      <ul className="flex gap-1">
         <NavLink className={nav} to="/u/imyt.io">
           {/* It should be redirected to :userHandle */}
           {user ? "true" : "false"}
-        </NavLink>
-      </ul>
-      <ul className="flex gap-1">
-        <NavLink className={nav} to="/profile">
-          Profile
         </NavLink>
         <NavLink className={nav} to="login">
           Logout

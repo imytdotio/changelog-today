@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Profile } from "../Components/Profile";
 import { Changelog } from "../Components/Changelog";
-import { supabase } from "../Config/supabaseClient";
+import { supabase } from "../Config/supabase";
 
 /**
  * @author

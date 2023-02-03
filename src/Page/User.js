@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { Link, NavLink, useParams } from "react-router-dom";
 import { Changelog } from "../Components/Changelog";
 import { Profile } from "../Components/Profile";
-import { supabase } from "../Config/supabaseClient";
+import { supabase } from "../Config/supabase";
 
 /**
  * @author
@@ -54,19 +54,21 @@ export const User = (props) => {
   return (
     <div>
       {userInfo && (
-        <Profile
-          username={userInfo.username}
-          userId={userInfo.handle}
-          pfpUrl={userInfo.pfpUrl}
-          motto={userInfo.Motto}
-          selfIntro={userInfo.Self_Introduction}
-        />
+        <div className="w-full md:w-96 m-auto">
+          <Link to="/profile">
+            <Profile
+              username={userInfo.username}
+              userId={userInfo.handle}
+              pfpUrl={userInfo.pfpUrl}
+              motto={userInfo.Motto}
+              selfIntro={userInfo.Self_Introduction}
+            />
+          </Link>
+        </div>
       )}
       <div className="md:w-96 w-full mx-auto rounded-md my-4 py-4 bg-slate-200 border-2 border-slate-600 hover:ring-2 hover:ring-slate-800/60 hover:ring-offset-2 duration-100">
         <NavLink to="/create">
-          <p>
-            + Create Log
-          </p>
+          <p>+ Create Log</p>
         </NavLink>
       </div>
       {logs &&

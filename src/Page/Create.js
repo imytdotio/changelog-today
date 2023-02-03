@@ -1,7 +1,7 @@
 import { marked } from "marked";
 import React, { useState } from "react";
 import { Button, Label, TextInput } from "../Components/Components";
-import { supabase } from "../Config/supabaseClient";
+import { supabase } from "../Config/supabase";
 import ReactMarkdown from "react-markdown";
 
 /**
