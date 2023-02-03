@@ -62,8 +62,8 @@ export const User = (props) => {
                 username={userInfo.username}
                 userId={userInfo.handle}
                 pfpUrl={userInfo.pfpUrl}
-                motto={userInfo.Motto}
-                selfIntro={userInfo.Self_Introduction}
+                motto={userInfo.motto}
+                selfIntro={userInfo.selfIntro}
               />
             </Link>
           ) : (
@@ -71,8 +71,8 @@ export const User = (props) => {
               username={userInfo.username}
               userId={userInfo.handle}
               pfpUrl={userInfo.pfpUrl}
-              motto={userInfo.Motto}
-              selfIntro={userInfo.Self_Introduction}
+              motto={userInfo.motto}
+              selfIntro={userInfo.selfIntro}
             />
           )}
         </div>

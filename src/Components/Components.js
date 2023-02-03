@@ -44,6 +44,7 @@ export const TextInput = (props) => {
     <input
       type={props.type}
       value={props.value}
+      disabled={props.disabled}
       onChange={props.onChange}
       className={`p-2 px-4 border rounded-md w-full md:w-96 focus:outline focus:outline-2 focus:outline-slate-800 ${props.className}`}
       placeholder={props.placeholder}

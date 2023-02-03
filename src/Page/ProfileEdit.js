@@ -1,9 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Profile } from "../Components/Profile";
 import { Button, Label, TextInput } from "../Components/Components";
 import { FaInstagram, FaTwitter } from "react-icons/fa";
 import { isElementType } from "@testing-library/user-event/dist/utils";
 import { AuthContext } from "../Context/AuthContext";
+import { supabase } from "../Config/supabase";
 
 /**
  * @author
@@ -22,19 +23,55 @@ const SocialLink = (props) => {
 };
 
 export const ProfileEdit = (props) => {
-  const [username, setUsername] = useState("YT");
-  const [motto, setMotto] = useState(
-    "He said one day, you'll leave the world behind, so live a life you will remember."
-  );
-  const [mCount, setMCount] = useState(motto ? motto.length : 0);
-  const [selfIntro, setSelfIntro] = useState(
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum "
-  );
+  const { user } = useContext(AuthContext);
+  const [username, setUsername] = useState();
+  const [motto, setMotto] = useState("");
+  const [mCount, setMCount] = useState();
+  const [selfIntro, setSelfIntro] = useState("");
+  const [handle, setHandle] = useState("");
   const [userId, setUserId] = useState("imyt.io");
   const submitHandler = (e) => {
     e.preventDefault();
   };
 
+  const fetchUser = async (uid) => {
+    const { data, error } = await supabase
+      .from("users")
+      .select()
+      .eq("uid", uid);
+
+    if (error) {
+      console.log(error);
+      return;
+    }
+
+    if (data) {
+      setUsername(data[0].username);
+      setMotto(data[0].motto);
+      setSelfIntro(data[0].selfIntro);
+      setHandle(data[0].handle);
+      setMCount(data[0].motto.length);
+    }
+  };
+  useEffect(() => {
+    user && fetchUser(user.user.id);
+  }, [user]);
+
+  const updateProfile = async () => {
+    const { data, error } = await supabase
+      .from("users")
+      .update({ username, motto, selfIntro })
+      .eq("uid", user.user.id);
+
+    if (error) {
+      console.log(error);
+      return;
+    }
+
+    if (data) {
+      console.log(data);
+    }
+  };
 
   return (
     <div>
@@ -44,6 +81,14 @@ export const ProfileEdit = (props) => {
         onSubmit={submitHandler}
       >
         {/* TODO: Avatar */}
+        <Label text="Handle">
+          <TextInput
+            type="text"
+            value={handle}
+            disabled={true}
+            onChange={() => {}}
+          />
+        </Label>
         <Label text="Username">
           <TextInput
             type="text"
@@ -101,7 +146,9 @@ export const ProfileEdit = (props) => {
         motto={motto}
         selfIntro={selfIntro}
       />
-      <Button type="submit">Update</Button>
+      <Button type="submit" onClick={updateProfile}>
+        Update
+      </Button>
     </div>
   );
 };
