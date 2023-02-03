@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
 import { Button, TextInput } from "./Components";
 
@@ -6,6 +7,7 @@ export const SignIn = () => {
   const { signUp, signInWithPassword } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   return (
     <>
@@ -27,7 +29,12 @@ export const SignIn = () => {
         <Button variant="outline" onClick={() => signUp(email, password)}>
           Sign Up
         </Button>
-        <Button onClick={() => signInWithPassword(email, password)}>
+        <Button
+          onClick={() => {
+            signInWithPassword(email, password);
+            navigate("/");
+          }}
+        >
           Sign In
         </Button>
       </div>

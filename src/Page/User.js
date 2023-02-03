@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink, useParams } from "react-router-dom";
 import { Changelog } from "../Components/Changelog";
 import { Profile } from "../Components/Profile";
 import { supabase } from "../Config/supabase";
+import { AuthContext } from "../Context/AuthContext";
 
 /**
  * @author
@@ -11,6 +12,7 @@ import { supabase } from "../Config/supabase";
 
 export const User = (props) => {
   const { userHandle } = useParams();
+  const { user } = useContext(AuthContext);
   const [userInfo, setUserInfo] = useState({});
   const [logs, setLogs] = useState([]);
 
@@ -47,6 +49,7 @@ export const User = (props) => {
   };
 
   useEffect(() => {
+    console.log();
     getUserInfo();
     getUserLogs();
   }, []);
@@ -66,11 +69,16 @@ export const User = (props) => {
           </Link>
         </div>
       )}
-      <div className="md:w-96 w-full mx-auto rounded-md my-4 py-4 bg-slate-200 border-2 border-slate-600 hover:ring-2 hover:ring-slate-800/60 hover:ring-offset-2 duration-100">
-        <NavLink to="/create">
-          <p>+ Create Log</p>
-        </NavLink>
-      </div>
+      {user && userInfo.handle === userHandle ? (
+        <div className="md:w-96 w-full mx-auto rounded-md my-4 py-4 bg-slate-200 border-2 border-slate-600 hover:ring-2 hover:ring-slate-800/60 hover:ring-offset-2 duration-100">
+          <NavLink to="/create">
+            <p>+ Create Log</p>
+          </NavLink>
+        </div>
+      ) : (
+        ""
+      )}
+
       {logs &&
         logs.map((log) => (
           <Changelog

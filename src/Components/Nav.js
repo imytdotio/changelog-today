@@ -4,6 +4,7 @@ import { supabase } from "../Config/supabase";
 import { AuthContext } from "../Context/AuthContext";
 import { FiHome, FiLogIn, FiLogOut, FiUser } from "react-icons/fi";
 import { SignOut } from "./Auth";
+import { TextInput } from "./Components";
 
 /**
  * @author
@@ -36,12 +37,16 @@ export const Nav = (props) => {
   }, [user]);
 
   return (
-    <div className="flex w-full md:w-96 m-auto my-4">
-      <ul className="flex flex-1 gap-1">
+    <div className="flex w-full md:w-96 m-auto my-4 justify-between gap-4">
+      <ul className="flex gap-1">
         <NavLink className={nav} to="/">
           <FiHome className="my-auto h-full" />
         </NavLink>
       </ul>
+      {/* <TextInput
+        className="my-auto bg-transparent focus:bg-white"
+        placeholder="Search"
+      /> */}
       <ul className="flex gap-1">
         {user ? (
           <div className="flex flex-row gap-2">
