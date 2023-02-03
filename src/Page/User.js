@@ -43,13 +43,11 @@ export const User = (props) => {
     }
     if (data) {
       setLogs(data);
-      console.log(data);
       return data;
     }
   };
 
   useEffect(() => {
-    console.log();
     getUserInfo();
     getUserLogs();
   }, []);
@@ -58,7 +56,17 @@ export const User = (props) => {
     <div>
       {userInfo && (
         <div className="w-full md:w-96 m-auto">
-          <Link to="/profile">
+          {user && userInfo.handle === userHandle ? (
+            <Link to="/profile">
+              <Profile
+                username={userInfo.username}
+                userId={userInfo.handle}
+                pfpUrl={userInfo.pfpUrl}
+                motto={userInfo.Motto}
+                selfIntro={userInfo.Self_Introduction}
+              />
+            </Link>
+          ) : (
             <Profile
               username={userInfo.username}
               userId={userInfo.handle}
@@ -66,14 +74,14 @@ export const User = (props) => {
               motto={userInfo.Motto}
               selfIntro={userInfo.Self_Introduction}
             />
-          </Link>
+          )}
         </div>
       )}
       {user && userInfo.handle === userHandle ? (
         <div className="md:w-96 w-full mx-auto rounded-md my-4 py-4 bg-slate-200 border-2 border-slate-600 hover:ring-2 hover:ring-slate-800/60 hover:ring-offset-2 duration-100">
-          <NavLink to="/create">
+          <Link to="/create">
             <p>+ Create Log</p>
-          </NavLink>
+          </Link>
         </div>
       ) : (
         ""

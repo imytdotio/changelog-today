@@ -25,7 +25,6 @@ export const Home = (props) => {
     }
 
     if (data) {
-      console.log(data);
       setLogs(data);
       setError(null);
     }
@@ -73,7 +72,6 @@ export const Home = (props) => {
 
   return (
     <div>
-      <h1>Home</h1>
       {error && <p>{error.message}</p>}
       <div className="flex flex-row justify-center mx-auto md:w-96 w-full ">
         {
