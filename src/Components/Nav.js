@@ -1,6 +1,9 @@
-import React, { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { NavLink, useLocation, useParams } from "react-router-dom";
+import { supabase } from "../Config/supabase";
 import { AuthContext } from "../Context/AuthContext";
+import { FiHome, FiLogIn, FiLogOut, FiUser } from "react-icons/fi";
+import { SignOut } from "./Auth";
 
 /**
  * @author
@@ -8,23 +11,52 @@ import { AuthContext } from "../Context/AuthContext";
  **/
 
 export const Nav = (props) => {
+  const location = useLocation();
+  const { userHandle } = useParams();
   const nav = "hover:bg-gray-200 duration-200 p-2 rounded-md";
-  const { user } = useContext(AuthContext);
+  const { user, signOut } = useContext(AuthContext);
+  const [handle, setHandle] = useState("");
+
+  useEffect(() => {
+    const fetchLoggedInHandle = async () => {
+      const { data, error } = await supabase
+        .from("users")
+        .select()
+        .eq("uid", user.user.id);
+      if (error) {
+        console.log(error);
+        return;
+      }
+
+      if (data) {
+        setHandle(data[0].handle);
+      }
+    };
+    user && fetchLoggedInHandle();
+  }, [user]);
+
   return (
     <div className="flex w-full md:w-96 m-auto my-4">
       <ul className="flex flex-1 gap-1">
         <NavLink className={nav} to="/">
-          Home
+          <FiHome className="my-auto h-full" />
         </NavLink>
       </ul>
       <ul className="flex gap-1">
-        <NavLink className={nav} to="/u/imyt.io">
-          {/* It should be redirected to :userHandle */}
-          {user ? "true" : "false"}
-        </NavLink>
-        <NavLink className={nav} to="login">
-          Logout
-        </NavLink>
+        {user ? (
+          <div className="flex flex-row gap-2">
+            <NavLink className={nav} to={`/u/${handle}`}>
+              <FiUser className="my-auto h-full" />
+            </NavLink>
+            <button className={nav} onClick={signOut}>
+              <FiLogOut className="my-auto h-full" />
+            </button>
+          </div>
+        ) : (
+          <NavLink className={nav} to="/login">
+            <FiLogIn className="my-auto h-full" />
+          </NavLink>
+        )}
       </ul>
     </div>
   );

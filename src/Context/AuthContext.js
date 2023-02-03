@@ -5,6 +5,8 @@ export const AuthContext = createContext();
 
 export const AuthProvider = (props) => {
   const [user, setUser] = useState();
+  const [session, setSession] = useState();
+  const [error, setError] = useState();
   const signUp = async (email, password) => {
     const { data, error } = await supabase.auth.signUp({
       email: email,
@@ -33,6 +35,7 @@ export const AuthProvider = (props) => {
     if (data) {
       console.log(data);
       setUser(data.user);
+      setUser(data.session);
     }
   };
 
@@ -41,11 +44,16 @@ export const AuthProvider = (props) => {
     if (error) {
       console.log(error);
       return;
+    } else {
+      setUser(null);
+      setSession(null);
     }
   };
 
   return (
-    <AuthContext.Provider value={{ signUp, signInWithPassword, signOut, user }}>
+    <AuthContext.Provider
+      value={{ signUp, signInWithPassword, signOut, user, session }}
+    >
       {props.children}
     </AuthContext.Provider>
   );
