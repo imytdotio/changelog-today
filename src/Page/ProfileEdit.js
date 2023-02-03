@@ -30,6 +30,7 @@ export const ProfileEdit = (props) => {
   const [selfIntro, setSelfIntro] = useState("");
   const [handle, setHandle] = useState("");
   const [userId, setUserId] = useState("imyt.io");
+  const [pfpUrl, setPfpUrl] = useState("");
   const submitHandler = (e) => {
     e.preventDefault();
   };
@@ -51,6 +52,7 @@ export const ProfileEdit = (props) => {
       setSelfIntro(data[0].selfIntro);
       setHandle(data[0].handle);
       setMCount(data[0].motto.length);
+      setPfpUrl(data[0].pfpUrl)
     }
   };
   useEffect(() => {
@@ -60,7 +62,7 @@ export const ProfileEdit = (props) => {
   const updateProfile = async () => {
     const { data, error } = await supabase
       .from("users")
-      .update({ username, motto, selfIntro })
+      .update({ handle, username, motto, selfIntro })
       .eq("uid", user.user.id);
 
     if (error) {
@@ -85,8 +87,10 @@ export const ProfileEdit = (props) => {
           <TextInput
             type="text"
             value={handle}
-            disabled={true}
-            onChange={() => {}}
+            // disabled={true}
+            onChange={(e) => {
+              setHandle(e.target.value);
+            }}
           />
         </Label>
         <Label text="Username">
@@ -140,9 +144,9 @@ export const ProfileEdit = (props) => {
       <hr className="w-96 mt-8 mb-4 m-auto" />
       <h3 className="font-bold text-xl mb-4">Preview</h3>
       <Profile
-        pfpUrl="https://i.ibb.co/RHKQZx7/IMG-4935.jpg"
+        pfpUrl={pfpUrl}
         username={username}
-        userId={userId}
+        userId={handle}
         motto={motto}
         selfIntro={selfIntro}
       />

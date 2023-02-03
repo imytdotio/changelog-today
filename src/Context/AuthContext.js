@@ -18,6 +18,7 @@ export const AuthProvider = (props) => {
     }
     if (data) {
       console.log(data);
+      createUser(data.user.id);
     }
   };
 
@@ -47,6 +48,22 @@ export const AuthProvider = (props) => {
     } else {
       setUser(null);
       setSession(null);
+    }
+  };
+
+  // Functions -----------------------------------------
+  const createUser = async (uid) => {
+    const { data, error } = await supabase
+      .from("users")
+      .insert({ uid: uid, handle: uid })
+      .select();
+    if (error) {
+      console.log(error);
+      return;
+    }
+
+    if (data) {
+      console.log(data);
     }
   };
 

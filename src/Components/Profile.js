@@ -17,12 +17,10 @@ export const Profile = (props) => {
         />
         <div className="flex-col my-auto">
           <h1 className="font-bold text-2xl">
-            {props.username}{" "}
+            {props.username}
             <span
               className="text-gray-300 hover:cursor-pointer"
-              onClick={() => {
-                console.log("hi");
-              }}
+              onClick={() => {}}
             >
               @{props.userId}
             </span>

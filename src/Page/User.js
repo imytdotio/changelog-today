@@ -21,6 +21,7 @@ export const User = (props) => {
       .from("users")
       .select()
       .eq("handle", userHandle);
+      // have to use uid
     if (error) {
       console.log(error);
       return;
@@ -48,7 +49,7 @@ export const User = (props) => {
   };
 
   useEffect(() => {
-    getUserInfo();
+    user && getUserInfo();
     getUserLogs();
   }, []);
 
